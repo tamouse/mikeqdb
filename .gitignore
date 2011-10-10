@@ -1,0 +1,8 @@
+# Ignore the usual suspects
+*~
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.bzip2
