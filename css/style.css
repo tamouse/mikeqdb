@@ -1,0 +1,43 @@
+/*
+ * style - CSS style sheet for mikeqdb site
+ *
+ * Author: Tamara Temple <tamara@tamaratemple.com>
+ * Created: 2011/10/10
+ * Copyright (c) 2011 Tamara Temple Web Development
+ * License: GPLv3
+ *
+ */
+
+body {
+  margin: 0;
+  padding: 3px;
+  font-family: Arial;
+  font-size: 1em;
+}
+
+DIV#content {  }
+
+DIV#heading {  }
+
+DIV#footing {  }
+
+/* nav is displayed to the right of the top line */
+DIV.nav {
+          margin: 0;
+          padding: 2px,
+          float: right;
+          width: 50%
+          height: 3em;
+          }
+
+DIV.nav ul { list-style: none; }
+
+DIV.nav ul li { display: inline; }
+
+/* brand is displayed to the left of the top line */
+DIV.brand { margin: 0; padding: 2px; float: left; width: 50%; height: 3em; }
+
+#sitelogo { float: left; }
+#sitetitle { font-weight: bold; font-size: 2em; }
+
+.box { border: 1px solid black; }
