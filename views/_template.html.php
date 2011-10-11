@@ -8,7 +8,7 @@
  * Copyright (c) 2011 Tamara Temple Web Development
  *
  */
->?
+?>
 <!DOCTYPE html>
 <html>
 <head>
