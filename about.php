@@ -10,8 +10,7 @@
  *
  */
 
-$content = <<<ABOUT
-Mike's Quote Database.
-ABOUT;
+require_once("config.inc.php");
 
+$content = "Mike's Quote Database.";
 include_once(VIEWS."_template.html.php");

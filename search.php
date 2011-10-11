@@ -10,6 +10,7 @@
  *
  */
 
+require_once("config.inc.php");
 $content='To be developed.';
 include_once(VIEWS.'_template.html.php');
 

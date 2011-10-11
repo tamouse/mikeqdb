@@ -10,12 +10,11 @@
  *
  */
 
-$content = <<<NEWEST
+require_once("config.inc.php");
 
-To be developed.
 
-NEWEST;
 
+$content = 'To be developed.';
 include_once(VIEWS."_template.html.php");
 
 
