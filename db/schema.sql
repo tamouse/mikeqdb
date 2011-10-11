@@ -34,4 +34,4 @@ CREATE TABLE votes
 
 ) ENGINE=INNODB;
 
-GRANT ALL ON `mikeqdb` TO 'mike'@'%' IDENTIFIED BY 'for some value of quote';
+GRANT ALL ON `mikeqdb`.* TO 'mike'@'localhost' IDENTIFIED BY 'for some value of quote';
