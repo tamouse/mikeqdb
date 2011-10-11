@@ -58,3 +58,4 @@ insert into votes set quote_id=4, ip_addr='255.255.255.245', vote=-1, created=NO
 insert into votes set quote_id=4, ip_addr='255.255.255.244', vote=-1, created=NOW();
 
 select sum(vote) from votes where quote_id=4;
+

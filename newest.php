@@ -11,10 +11,11 @@
  */
 
 require_once("config.inc.php");
+require_once(LIB."paginate.php");
 
+global $quotelist;
+$quotelist = get_quotes_for_page('newest');
 
-
-$content = 'To be developed.';
-include_once(VIEWS."_template.html.php");
+include_once(VIEWS."showquotes.html.php");
 
 

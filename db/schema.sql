@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `votes` ;
-DROP TABLE IF EXISTS `ratings`;
 DROP TABLE IF EXISTS `quotes`;
 
 
@@ -7,7 +6,7 @@ CREATE TABLE `quotes`
 (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`quote_text` TEXT NOT NULL ,
-	`rating` INT,
+	`rating` INT DEFAULT 0,
 
 	`created` DATETIME NOT NULL ,
 	`updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

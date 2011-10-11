@@ -42,6 +42,8 @@ $GLOBALS['navigation'] =
 	"Search" => 'search.php',
 	);
 $GLOBALS['navsep'] = ' | ';
+$GLOBALS['quotes_per_page'] = 10;
+$GLOBALS['linesep'] = '¶';
 
 
 /**
