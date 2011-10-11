@@ -16,6 +16,18 @@ define('LIB', APP_DIR . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR);
 define('VIEWS', APP_DIR . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 define('APP_PATH', dirname($_SERVER['SCRIPT_URL']) . DIRECTORY_SEPARATOR);
 
+include_once(LIB.'class.Debug.php');
+global $dbg;
+$dbg = new Debug();
+
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors','on');
+ini_set('display_startup_errors','on');
+
+$dbg->p("startup",'',__FILE__,__LINE__);
+
+
+
 $GLOBALS['version'] = '0.1';
 $GLOBALS['sitetitle'] = 'Callahans Quotes';
 $GLOBALS['sitelogo'] = '';
