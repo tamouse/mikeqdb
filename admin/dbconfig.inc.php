@@ -10,7 +10,7 @@
  */
 
 define('DBNAME', 'mikeqdb');
-define('DBUSER', 'mike');
+define('DBUSER', 'mikeqdb');
 define('DBPASS', 'for some value of quote');
 define('DBHOST', 'localhost');
 
