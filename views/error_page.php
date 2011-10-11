@@ -13,7 +13,6 @@
 global $error_msg;
 
 $content = '
-<div id="content">
 <h1>Ooops!</h1>
 <h3>There was an error.</h3>
 ';
@@ -25,10 +24,6 @@ if (is_array($error_msg)) {
 } else {
   $content .= _wrap($error_msg,'p','error');
 }
-
-$content .='
-</div>
-';
 
 
 include_once("_template.html.php");

@@ -15,22 +15,24 @@ body {
   font-size: 1em;
 }
 
-DIV#content {  }
+DIV#content { clear: both; margin-top: 1em;  }
 
-DIV#heading {  }
+DIV#heading { border-bottom: 1px solid blue  }
 
-DIV#footing {  }
+DIV#footing { clear:both; margin-top: 2em; border-top: 1px solid red }
 
 /* nav is displayed to the right of the top line */
 DIV.nav {
           margin: 0;
           padding: 2px,
-          float: right;
+          text-align: right;
           width: 50%
-          height: 3em;
+          position:absolute;
+          bottom:0;
+          right:0;
           }
 
-DIV.nav ul { list-style: none; }
+DIV.nav ul { list-style: none; text-align: right;}
 
 DIV.nav ul li { display: inline; }
 
@@ -41,3 +43,6 @@ DIV.brand { margin: 0; padding: 2px; float: left; width: 50%; height: 3em; }
 #sitetitle { font-weight: bold; font-size: 2em; }
 
 .box { border: 1px solid black; }
+
+.fleft { float:left; }
+.fright { float:right; }

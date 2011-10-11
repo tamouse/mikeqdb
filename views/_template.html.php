@@ -22,15 +22,17 @@
    }?>
 </head>
 <body>
-     <div id="heading">
-     <?php include_once("_heading.html.php"); ?>
-     </div>
+   <div id="heading">
+   <?php include_once("_heading.html.php"); ?>
+   </div>
 
-     <?php echo $content ?>
+   <div id="content">
+   <?php echo $content ?>
+   </div>
 
-     <div id="footing">
-     <?php include_once("_footing.html.php"); ?>
-     </div>
+   <div id="footing">
+   <?php include_once("_footing.html.php"); ?>
+   </div>
 
 </body>
 </html>

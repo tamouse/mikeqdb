@@ -26,10 +26,13 @@ echo PHP_EOL;
 // right part of page heading: navigation
 echo '<div class="nav">';
 echo '<ul>';
+$navlist = array();
 while (list($key,$val) = each($GLOBALS['navigation'])) {
-  echo '<li><a href="'.$val.'">'.$key.' '.$GLOBALS['navsep'].' '.'</a></li>';
+  $navlist[] = '<li><a href="'.$val.'">'.$key.'</a></li>';
 }
-echo '</ul';
+echo join($GLOBALS['navsep'],$navlist);
+echo '</ul>';
 echo '</div>';
 echo PHP_EOL;
 
+echo '<div class="clearboth"></div>'.PHP_EOL;
