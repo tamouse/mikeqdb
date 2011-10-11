@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?php echo $GLOBALS['sitetitle'];</title>
+<title><?php echo $GLOBALS['sitetitle'];?></title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
    <meta name="generator" content="mikeqdb" />
    <meta name="robots" content="index,follow" />
