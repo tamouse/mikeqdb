@@ -26,6 +26,7 @@ function error_page($errormsgs='')
     $error_msg = $errormsgs;
   }
   include_once(VIEWS."error_page.php");
+  exit;
 }
 
 
