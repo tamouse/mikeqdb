@@ -76,4 +76,4 @@ if (!$quotelist) {
   $content .= '</div>'.PHP_EOL;
 }
 
-include_once("_tempate.html.php");
+include_once(VIEWS."_template.html.php");

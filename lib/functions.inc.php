@@ -97,7 +97,7 @@ function total_quotes()
  * @return string - link html
  * @author Tamara Temple <tamara@tamaratemple.com>
  **/
-function _link($text, $href, $query=nil, $attr=nil, $escapetext=FALSE)
+function _link($text, $href, $query=NULL, $attr=NULL, $escapetext=FALSE)
 {
   $out = '<a href="' . $href;
   if (!empty($query) && is_array($query)) {
@@ -125,7 +125,7 @@ function _link($text, $href, $query=nil, $attr=nil, $escapetext=FALSE)
  * @return string - wrapped text
  * @author Tamara Temple <tamara@tamaratemple.com>
  **/
-function _wrap($text,$tag='p',$class=nil,$escape=nil)
+function _wrap($text,$tag='p',$class=NULL,$escape=NULL)
 {
   $out = '<'.$tag;
   if (!empty($class)) {

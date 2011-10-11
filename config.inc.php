@@ -27,7 +27,8 @@ $dbg = new Debug();
 error_reporting(E_ALL | E_STRICT);
 ini_set('display_errors','on');
 ini_set('display_startup_errors','on');
-
+ini_set('html_errors','on');
+ini_set('docref_root','http://www.php.net/manual/en/');
 
 $GLOBALS['version'] = '0.1';
 $GLOBALS['sitetitle'] = 'Callahans Quotes';
