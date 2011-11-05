@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/11/05
- * @version <2011-Oct-23 02:35>
+ * @version <2011-Nov-05 12:38>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -19,8 +19,8 @@ if ($GLOBALS['total_quotes'] > 0) {
   die("Data base is not empty, not going to overwrite.");
 }
 
-$quote_file = ADMIN."patron_quotes.egt";
-if (! file_exists($quote_file)) die ("$quote_file not found in ".ADMIN." directory.");
+$quote_file = APP_ROOT."db/patron_quotes.egt";
+if (! file_exists($quote_file)) die ("$quote_file not found in ".APP_ROOT."db"." directory.");
 
 $contents = file_get_contents($quote_file);
 $quotes = explode("\n",  $contents);
