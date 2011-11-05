@@ -44,11 +44,19 @@ function get_current_page()
  **/
 function get_quotes_for_page($order='newest')
 {
+  global $dbg;
   $totalrows = $GLOBALS['total_quotes'];
+  $dbg->p("totalrows: ",$totalrows,__FILE__,__LINE__);
   $totalpages = ceil($totalrows / $GLOBALS['quotes_per_page']);
+  $dbg->p("totalpages: ",$totalpages,__FILE__,__LINE__);
   $currentpage = get_current_page();
+  $dbg->p("currentpage: ",$currentpage,__FILE__,__LINE__);
   $offset = ($currentpage - 1) * $GLOBALS['quotes_per_page'];
+  $dbg->p("offset: ",$offset,__FILE__,__LINE__);
+  $dbg->p("offset numeric?",is_numeric($offset),__FILE__,__LINE__);
+  $dbg->p("quotes per page: ",$GLOBALS['quotes_per_page'],__FILE__,__LINE__);
   $quotelist = get_quotes_partial($offset,$GLOBALS['quotes_per_page'],$order);
+  $dbg->p("quotelist: ",$quotelist,__FILE__,__LINE__);
   return $quotelist;
 }
 
@@ -63,14 +71,19 @@ function get_quotes_for_page($order='newest')
  **/
 function get_quotes_partial($offset,$limit,$order='newest')
 {
-  global $qdb;
+  global $qdb,$dbg;
+  $dbg->p("in get quotes partial. ",'',__FILE__,__LINE__);
   if ($offset < 0 || $offset > $GLOBALS['total_quotes']) {
-    return FALSE;
+    $dbg->p("returning from offset range check.",$offset,__FILE__,__LINE__);
+    $offset = 0;
   }
   if ($limit < 0 || $limit > $GLOBALS['total_quotes']) {
-    return FALSE;
+    $dbg->p("returning from limit range check. ",$limit,__FILE__,__LINE__);
+    $limit = $GLOBALS['total_quotes'];
   }
   
+  $dbg->p("order: ",$order,__FILE__,__LINE__);
+
   switch ($order) {
   case 'newest':
     $orderby = 'ORDER BY created DESC';
@@ -87,20 +100,24 @@ function get_quotes_partial($offset,$limit,$order='newest')
     break;
 
   default:
+    $dbg->p("hit default return in switch. ",$order,__FILE__,__LINE__);
     return FALSE;
     #break;
   }
 
   $sql = "SELECT * FROM quotes $orderby LIMIT $offset, $limit";
+  $dbg->p("sql statement: ",$sql,__FILE__,__LINE__);
   $res = $qdb->query($sql);
   if (FALSE === $res) {
     error_page("Retrieval of quotes failed: (".
 	       $qdb->errno.') '.$qdb->error,
 	       "SQL statement: $sql");
   }
-  while ($row = $res->fetch_array(MYSQLI_NUM)) {
+  $dbg->p("results from query: ",$res,__FILE__,__LINE__);
+  while ($row = $res->fetch_assoc()) {
     $rows[] = $row;
   }
+  $dbg->p("Rows returned: ",$rows,__FILE__,__LINE__);
   return $rows;
 }
 

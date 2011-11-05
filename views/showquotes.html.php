@@ -42,12 +42,14 @@ function format_quote($quote)
 		       'span','quoteid') .
 		 _wrap("Rating:",'span','label') .
 		 _wrap($quote['rating'],'span','rating') .
-		 _wrap(_link('-',APP_PATH.'castvote.php',array('q'=>$quote['id'],'vote'=>'down'))
+		 _wrap(_wrap("Vote:",'span','label') . 
+		       _link(_img(CSS.'thumbsup.gif','thumbs up').' Thumbs Up',APP_PATH.'castvote.php',array('q'=>$quote['id'],'vote'=>'up'))
 		       . ' | ' .
-		       _link('+',APP_PATH.'castvote.php',array('q'=>$quote['id'],'vote'=>'up')),
+		       _link(_img(CSS.'thumbsdown.gif','thumbs down').' Thumbs Down',APP_PATH.'castvote.php',array('q'=>$quote['id'],'vote'=>'down'))
+		       ,
 		       'span','voting'),
 		 'div','quoteheading');
-  $out[] = '<ul>';
+  $out[] = '<ul class="quotebody">';
   $lines = explode($GLOBALS['linesep'],$quote['quote_text']);
   foreach ($lines as $line) {
     $out[] = format_line($line);
@@ -67,7 +69,7 @@ if (!$quotelist) {
 } else {
   $content = '<div class="quotes">'.PHP_EOL;
   if (is_array($quotelist)) {
-    foreach ($quotes as $quote) {
+    foreach ($quotelist as $quote) {
       $content .= format_quote($quote).PHP_EOL;
     }
   } else {

@@ -21,14 +21,7 @@ define('JS', APP_PATH.'js'.DIRECTORY_SEPARATOR);
 
 include_once(LIB.'class.Debug.php');
 global $dbg;
-$dbg = new Debug();
-
-// set these for development and testing
-error_reporting(E_ALL | E_STRICT);
-ini_set('display_errors','on');
-ini_set('display_startup_errors','on');
-ini_set('html_errors','on');
-ini_set('docref_root','http://www.php.net/manual/en/');
+$dbg = new Debug(TRUE);
 
 $GLOBALS['version'] = '0.1';
 $GLOBALS['sitetitle'] = 'Callahans Quotes';

@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/10/10
- * @version <2011-Nov-05 04:08>
+ * @version <2011-Nov-05 04:29>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -113,7 +113,7 @@ function get_single_quote($id)
 {
   global $qdb;
   if (!is_numeric($id)) error_page("Invalid quote identifier. Quote ID=$id");
-  $sql = 'SELECT * FROM `quotes` WHERE `id` = $id';
+  $sql = "call fetch_quote($id)";
   $res = $qdb->query($sql);
   if (FALSE === $res || $res->num_rows < 1) {
     error_page("Quote not found. Quote ID=$id");
@@ -131,7 +131,7 @@ function total_quotes()
 {
   global $qdb;
 
-  $sql = 'SELECT COUNT(`id`) FROM `quotes`';
+  $sql = 'call count_quotes()';
   $res = $qdb->query($sql);
   if (FALSE === $res || $res->num_rows < 1) {
     error_page( 'Error retrieving count of quotes: (' .
@@ -147,6 +147,35 @@ function total_quotes()
   $count = $row[0];
   return $count;
 }
+
+/**
+ * create an image tag given an image source and optional alt text
+ *
+ * @param string $src - location of image
+ * @param string $alt - optional alt text for image
+ * @param array $attr - optional attributes
+ * @param boolean $escapetext - whether to excape html entities
+ * @return string - image tag
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ **/
+function _img($src,$alt=NULL,$attr=NULL, $escapetext=FALSE)
+{
+  global $dbg;
+  $out = '<img src="' . $src . '"';
+  if (!empty($alt) && is_string($alt))
+    $out .= ' alt="'.
+      ($escapetext)?htmlentities($alt):$alt.'"';
+  if (!empty($attr) && is_array($attr)) {
+    while (list($k,$v) = each($attr)) {
+      $out .= " $kv=\"" .
+	($escapetext)?htmlentities($v):$v.
+	'"';
+    }
+  }
+  $out .= ' />';
+  return $out;
+}
+
 
 /**
  * wrap a link around some text
@@ -201,6 +230,6 @@ function _wrap($text,$tag='p',$class=NULL,$attr=NULL,$escape=NULL)
   }
   $out .= '>';
   $out .= ($escape) ? htmlentities($text) : $text;
-  $out .= "<$tag>".PHP_EOL;
+  $out .= "</$tag>".PHP_EOL;
   return $out;
 }
