@@ -7,3 +7,4 @@
 *.bz2
 *.bzip2
 .dir-locals.el
+admin/dbconfig.inc.php
