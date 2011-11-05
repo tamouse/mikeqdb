@@ -14,3 +14,12 @@ require_once("config.inc.php");
 
 $content = "Mike's Quote Database.";
 include_once(VIEWS."_template.html.php");
+
+/**
+ * Local variables:
+ * mode: php
+ * yas/mode-symbol: php
+ * fill-column: 75
+ * tab-width: 3
+ * end:
+ */

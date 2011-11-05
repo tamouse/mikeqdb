@@ -6,3 +6,4 @@
 *.tgz
 *.bz2
 *.bzip2
+.dir-locals.el
