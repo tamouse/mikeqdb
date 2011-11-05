@@ -57,7 +57,7 @@ $GLOBALS['navigation'] =
 	);
 $GLOBALS['navsep'] = ' | ';
 $GLOBALS['quotes_per_page'] = 50;
-$GLOBALS['linesep'] = chr(182);
+$GLOBALS['linesep'] = "\n";
 $GLOBALS['prev_link_text'] = '<prev';
 $GLOBALS['next_link_text'] = 'next>';
 $GLOBALS['vote_up_text'] = 'Thumbs Up!';
