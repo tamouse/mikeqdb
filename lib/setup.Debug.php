@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/11/05
- * @version <2011-Oct-23 02:35>
+ * @version <2011-Nov-05 12:33>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -27,7 +27,7 @@ if (isset($_REQUEST['debug'])) {
     break;
   }
 } else {
-  if ($_COOKIE['MIKEQDB_DEBUG'] == 'TRUE')    {
+  if (isset($_COOKIE['MIKEQDB_DEBUG']) && $_COOKIE['MIKEQDB_DEBUG'] == 'TRUE')    {
     turn_on_debugging();
   }
   else {
