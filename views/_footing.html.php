@@ -16,7 +16,7 @@ echo '<div class="clearboth"></div>';
 echo '<div class="fleft">mikeqdb version: '.$GLOBALS['version'].'</div>';
 
 // right side of footer
-echo '<div class="fright">'.total_quotes().' total quotes</div>';
+echo '<div class="fright">'.$GLOBALS['total_quotes'].' total quotes</div>';
 
 
 

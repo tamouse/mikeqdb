@@ -87,6 +87,35 @@ function total_quotes()
 }
 
 /**
+ * create an image tag given an image source and optional alt text
+ *
+ * @param string $src - location of image
+ * @param string $alt - optional alt text for image
+ * @param array $attr - optional attributes
+ * @param boolean $escapetext - whether to excape html entities
+ * @return string - image tag
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ **/
+function _img($src,$alt=NULL,$attr=NULL, $escapetext=FALSE)
+{
+  global $dbg;
+  $out = '<img src="' . $src . '"';
+  if (!empty($alt) && is_string($alt))
+    $out .= ' alt="'.
+      ($escapetext)?htmlentities($alt):$alt.'"';
+  if (!empty($attr) && is_array($attr)) {
+    while (list($k,$v) = each($attr)) {
+      $out .= " $kv=\"" .
+	($escapetext)?htmlentities($v):$v.
+	'"';
+    }
+  }
+  $out .= ' />';
+  return $out;
+}
+
+
+/**
  * wrap a link around some text
  *
  * @param string $text - subject of link
@@ -104,7 +133,7 @@ function _link($text, $href, $query=NULL, $attr=NULL, $escapetext=FALSE)
     $out .= '?' . http_build_query($query);
   }
   $out .='"';
-  if (!emptry($attr) && is_array($attr)) {
+  if (!empty($attr) && is_array($attr)) {
     while (list($k,$v) = each($attr)) {
       $out .= " $k=\"$v\"";
     }
@@ -133,6 +162,6 @@ function _wrap($text,$tag='p',$class=NULL,$escape=NULL)
   }
   $out .= '>';
   $out .= ($escape) ? htmlentities($text) : $text;
-  $out .= "<$tag>".PHP_EOL;
+  $out .= "</$tag>".PHP_EOL;
   return $out;
 }

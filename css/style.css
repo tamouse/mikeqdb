@@ -46,3 +46,14 @@ DIV.brand { margin: 0; padding: 2px; float: left; width: 50%; height: 3em; }
 
 .fleft { float:left; }
 .fright { float:right; }
+
+.quote { margin: 10px; padding: 3px; border: 1px solid black;  }
+UL.quotebody { list-style: none; padding-left: 2em; }
+.quoteline {  }
+DIV.quotedate {  }
+SPAN.quotedate {  }
+.label { font-weight: bold; padding-left: .5em;  }
+.quoteheading {  }
+.quoteid {  }
+.rating {  }
+.voting {  }

@@ -28,7 +28,7 @@ echo '<div class="nav">';
 echo '<ul>';
 $navlist = array();
 while (list($key,$val) = each($GLOBALS['navigation'])) {
-  $navlist[] = '<li><a href="'.$val.'">'.$key.'</a></li>';
+  $navlist[] = _wrap(_link($key,$val),'li');
 }
 echo join($GLOBALS['navsep'],$navlist);
 echo '</ul>';
