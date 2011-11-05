@@ -58,7 +58,12 @@ END $$
 DROP PROCEDURE IF EXISTS add_vote $$
 CREATE PROCEDURE add_vote(qid INT, ip VARCHAR(15), v INT)
 BEGIN
-	IF ip_p(qid,ip) THEN SELECT "Exists";
+	IF ip_p(qid,ip) THEN
+	   BEGIN
+	   UPDATE votes SET vote=v WHERE quote_id=qid AND ip_addr = ip;
+	   CALL update_rating(qid);
+	   SELECT "Updated";
+	   END ;
 	ELSE
 		BEGIN
 		INSERT INTO votes SET quote_id=qid, ip_addr = ip, vote=v, created=NOW();

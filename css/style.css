@@ -57,3 +57,7 @@ SPAN.quotedate {  }
 .quoteid {  }
 .rating {  }
 .voting {  }
+DIV.prev { float: left; }
+DIV.next { float: right; }
+A.voteup { padding-left: 40px; background: transparent url(thumbsup.gif) no-repeat 0px; }
+A.votedown { padding-left: 30px; background: transparent url(thumbsdown.gif) no-repeat 0px; }

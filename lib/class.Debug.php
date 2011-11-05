@@ -236,7 +236,7 @@ class Debug
       $out .= PHP_EOL;
     }
     if ($this->hold) {
-      $this->debugmessages[] = $out; // hold message until later
+      $this->heldmessages[] = $out; // hold message until later
     } else {
       if ($this->nohtml) {
 	echo $out;
