@@ -35,17 +35,28 @@ $GLOBALS['sitetitle'] = 'Callahans Quotes';
 $GLOBALS['sitelogo'] = '';
 $GLOBALS['HTMLHeader']['style'] = '<link rel="stylesheet" href="'.CSS.'style.css'.'" type="text/css" media="screen" />';
 $GLOBALS['HTMLHeader']['script'] = '';
+$GLOBALS['listtypes'] = array('newest', 'oldest', 'tophits', 'bottomhits', 'random', 'search', 'single', 'browse');
+$GLOBALS['default_list_type'] = 'newest';
+// navigation should pretty well matchup with listtypes
 $GLOBALS['navigation'] =
   array("About" => 'about.php',
-	"Top Hits" => 'tophits.php',
-	"Newest" => 'newest.php',
-	"Random" => 'random.php',
-	"Search" => 'search.php',
+	"Newest" => 'index.php/Newest',
+	"Oldest" => 'index.php/Oldest',
+	"Top Hits" => 'index.php/TopHits',
+	"Bottom Hits" => 'index.php/BottomHits',
+	"Browse" => 'index.php/Browse',
+	"Random" => 'index.php/Random',
+	"Search" => 'index.php/Search',
 	);
 $GLOBALS['navsep'] = ' | ';
 $GLOBALS['quotes_per_page'] = 10;
 $GLOBALS['linesep'] = '¶';
+$GLOBALS['quote_id_param'] = 'q';
+$GLOBALS['list_type_param'] = 'l';
 
+$GLOBALS['total_quotes'] = total_quotes(); // cache total quotes so we
+					   // don't have to call it a
+					   // bunch of times. '
 
 /**
  * Include functions
@@ -65,6 +76,5 @@ if ($qdb->connect_error) {
   error_page('Connect Error (' . $qdb->connect_errno . ') ' .
       $qdb->connect_error);
 }
-
 
 

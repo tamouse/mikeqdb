@@ -44,7 +44,7 @@ function get_current_page()
  **/
 function get_quotes_for_page($order='newest')
 {
-  $totalrows = total_quotes();
+  $totalrows = $GLOBALS['total_quotes'];
   $totalpages = ceil($totalrows / $GLOBALS['quotes_per_page']);
   $currentpage = get_current_page();
   $offset = ($currentpage - 1) * $GLOBALS['quotes_per_page'];
@@ -64,10 +64,10 @@ function get_quotes_for_page($order='newest')
 function get_quotes_partial($offset,$limit,$order='newest')
 {
   global $qdb;
-  if ($offset < 0 || $offset > total_quotes()) {
+  if ($offset < 0 || $offset > $GLOBALS['total_quotes']) {
     return FALSE;
   }
-  if ($limit < 0 || $limit > total_quotes()) {
+  if ($limit < 0 || $limit > $GLOBALS['total_quotes']) {
     return FALSE;
   }
   
@@ -75,6 +75,7 @@ function get_quotes_partial($offset,$limit,$order='newest')
   case 'newest':
     $orderby = 'ORDER BY created DESC';
     break;
+  case 'browse'
   case 'oldest':
     $orderby = 'ORDER BY created ASC';
     break;
@@ -97,7 +98,9 @@ function get_quotes_partial($offset,$limit,$order='newest')
 	       $qdb->errno.') '.$qdb->error,
 	       "SQL statement: $sql");
   }
-  $rows = $res->fetch_array(MYSQLI_NUM);
+  while ($row = $res->fetch_array(MYSQLI_NUM)) {
+    $rows[] = $row;
+  }
   return $rows;
 }
 

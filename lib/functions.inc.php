@@ -1,15 +1,16 @@
-<?php
+<?php  // -*- mode: php; time-stamp-start: "version [\"<]"; time-stamp-format: "%Y-%3b-%02d %02H:%02M"; -*- 
 /**
  *
  * functions.inc - miscellaneous functions
  *
- * Author: Tamara Temple <tamara@tamaratemple.com>
- * Created: 2011/10/10
- * Copyright (c) 2011 Tamara Temple Web Development
- * License: GPLv3
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ * @since 2011/10/10
+ * @version <2011-Nov-05 04:08>
+ * @copyright (c) 2011 Tamara Temple Web Development
+ * @license GPLv3
  *
  */
-
+ 
 
 /**
  * prepare and emit an error page
@@ -58,6 +59,67 @@ function explode_quoted($string)
   return $matches[0];
 }
 
+/**
+ * retrieve the quote id from the query string, if it exists
+ *
+ * @param none
+ * @return integer - quote identifier
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ **/
+function get_quote_id()
+{
+  if (isset($_REQUEST[$GLOBALS['quote_id_param']]) &&
+      is_numeric($_REQUEST[$GLOBALS['quote_id_param']])) {
+    return (int) $_REQUEST[$GLOBALS['quote_id_param']];
+  } else {
+    return FALSE;
+  }
+}
+
+/**
+ * determine which type of quote list to retrieve
+ *
+ * @param 
+ * @return string - type of quote list to retrieve
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ **/
+function get_quote_list_type()
+{
+  // the type of quote list is determined by either the value of the
+  // $_REQUEST['l'] parameter or the path info
+
+  if (isset($_REQUEST[$GLOBALS['list_type_param']])) {
+    $l = strtolower($_REQUEST[$GLOBALS['list_type_param']]);
+    return (in_array($l,$GLOBALS['list_types'])) ?
+      $l :
+      $GLOBALS['default_list_type'];
+  } else {
+    $path_info = strtolower($_SERVER['PATH_INFO']);
+    $paths = explode('/', $path_info);
+    return (isset($paths[1]) && in_array($paths[1],$list_types)) ?
+      $paths['1'] :
+      $GLOBALS['default_list_type'];
+  }
+}
+
+/**
+ * retrieve a single quote from the data base
+ *
+ * @param int $id - quote id
+ * @return array - record matching quote id or NULL
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ **/
+function get_single_quote($id)
+{
+  global $qdb;
+  if (!is_numeric($id)) error_page("Invalid quote identifier. Quote ID=$id");
+  $sql = 'SELECT * FROM `quotes` WHERE `id` = $id';
+  $res = $qdb->query($sql);
+  if (FALSE === $res || $res->num_rows < 1) {
+    error_page("Quote not found. Quote ID=$id");
+  }
+  $row = $res->fetch_row();
+}
 
 /**
  * return the total number of quotes in the data base
@@ -72,14 +134,14 @@ function total_quotes()
   $sql = 'SELECT COUNT(`id`) FROM `quotes`';
   $res = $qdb->query($sql);
   if (FALSE === $res || $res->num_rows < 1) {
-    return 'Error retrieving count of quotes: (' .
-      $qdb->errno . ') ' . $qdb->error. " SQL Statement: $sql";
+    error_page( 'Error retrieving count of quotes: (' .
+		$qdb->errno . ') ' . $qdb->error. " SQL Statement: $sql");
   }
 
   $row = $res->fetch_row();
   if (empty($row)) {
-    return 'Result set from count of quotes is empty: (' .
-      $qdb->errno . ') ' . $qdb->error . "SQL Statement: $sql";
+    error_page( 'Result set from count of quotes is empty: (' .
+		$qdb->errno . ') ' . $qdb->error . "SQL Statement: $sql");
   }
 
   $count = $row[0];
@@ -104,7 +166,7 @@ function _link($text, $href, $query=NULL, $attr=NULL, $escapetext=FALSE)
     $out .= '?' . http_build_query($query);
   }
   $out .='"';
-  if (!emptry($attr) && is_array($attr)) {
+  if (!empty($attr) && is_array($attr)) {
     while (list($k,$v) = each($attr)) {
       $out .= " $k=\"$v\"";
     }
@@ -121,15 +183,21 @@ function _link($text, $href, $query=NULL, $attr=NULL, $escapetext=FALSE)
  * @param string $text - the text to be wrapped (will be passed through htmlentities)
  * @param string $tag (optional) - tag to use to wrap text. defaults to 'p'
  * @param string $class (optional) - class to use in wrapping item. defaults to none
+ * @param array $attr (optional) - array containing extra tag attributes
  * @param bool $escape (optional) - whether to encode html entities or not
  * @return string - wrapped text
  * @author Tamara Temple <tamara@tamaratemple.com>
  **/
-function _wrap($text,$tag='p',$class=NULL,$escape=NULL)
+function _wrap($text,$tag='p',$class=NULL,$attr=NULL,$escape=NULL)
 {
   $out = '<'.$tag;
   if (!empty($class)) {
     $out .= ' class="'.$class.'"';
+  }
+  if (!empty($attr) && is_array($attr)) {
+    while (list($k,$v) = each($attr)) {
+      $out .= " $k=\"$v\"";
+    }
   }
   $out .= '>';
   $out .= ($escape) ? htmlentities($text) : $text;
