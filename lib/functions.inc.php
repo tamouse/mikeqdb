@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/10/10
- * @version <2011-Nov-05 10:46>
+ * @version <2011-Dec-09 19:07>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -34,7 +34,7 @@ function cast_vote($qid,$vote)
     $vote_v = 0;
     break;
   }
-  $sql = "call add_vote($qid, '".$_SERVER['SERVER_ADDR']."', $vote_v);";
+  $sql = "call add_vote($qid, '".$_SERVER['REMOTE_ADDR']."', $vote_v);";
   $dbg->p("\$sql = ",$sql,__FILE__,__LINE__,__FUNCTION__);
   $res = $qdb->query($sql);
   if (FALSE == $res) {
