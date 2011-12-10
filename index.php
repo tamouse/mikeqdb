@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/10/10
- * @version <>
+ * @version <2011-Dec-09 19:20>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -33,7 +33,6 @@ if (FALSE !== $vote) {
   }
 } 
 
-$dbg->p("quote_id: ",$quote_id,__FILE__,__LINE__,__FUNCTION__);
 // If there is a quote id specified on the query string, then the list
 // type must be single. If not, then the list type is determined by
 // examining the path info or for a 'l' parameter in the $_REQUEST

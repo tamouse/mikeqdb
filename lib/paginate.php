@@ -41,9 +41,13 @@ function get_current_page()
  **/
 function get_next()
 {
-  $next = $GLOBALS['currentpage'] + 1;
-  if ($next > $GLOBALS['totalpages']) return FALSE;
-  return $next;
+  if (isset($GLOBALS['currentpage'])) {
+    $next = $GLOBALS['currentpage'] + 1;
+    if ($next > $GLOBALS['totalpages']) return FALSE;
+    return $next;
+  } else {
+    return FALSE;
+  }
 }
 
 /**
@@ -55,9 +59,13 @@ function get_next()
  **/
 function get_prev()
 {
-  $prev = $GLOBALS['currentpage'] - 1;
-  if ($prev < 1) return FALSE;
-  return $prev;
+  if (isset($GLOBALS['currentpage'])) {
+    $prev = $GLOBALS['currentpage'] - 1;
+    if ($prev < 1) return FALSE;
+    return $prev;
+  } else {
+    return FALSE;
+  }
 }
 
 
