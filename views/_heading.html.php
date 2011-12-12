@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/10/10
- * @version <2011-Nov-05 03:13>
+ * @version <2011-Dec-12 17:49>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -25,13 +25,16 @@ echo PHP_EOL;
 
 // right part of page heading: navigation
 echo '<div class="nav">';
+echo '<form method="get" action="'.MAIN.'/Search">';
 echo '<ul>';
 $navlist = array();
 while (list($key,$val) = each($GLOBALS['navigation'])) {
-  $navlist[] = _wrap(_link($key,$val),'li');
+  $navlist[] = _wrap(_link($key,$val) . $GLOBALS['navsep'],'li');
 }
-echo join($GLOBALS['navsep'],$navlist);
+echo join("",$navlist);
+echo _wrap('<input type="text" name="'.$GLOBALS['search_param'].'" value="" /><input type="submit" name="Search" value="Search" />','li');
 echo '</ul>';
+echo '</form>';
 echo '</div>';
 echo PHP_EOL;
 

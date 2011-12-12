@@ -5,7 +5,7 @@
  *
  * @author Tamara Temple <tamara@tamaratemple.com>
  * @since 2011/10/10
- * @version <2011-Dec-09 19:20>
+ * @version <2011-Dec-12 17:42>
  * @copyright (c) 2011 Tamara Temple Web Development
  * @license GPLv3
  *
@@ -41,7 +41,21 @@ if (FALSE !== $quote_id) {
   $quotelist[] = get_single_quote($quote_id);
 } else {
   $quote_list_type = get_quote_list_type();
-  $quotelist = get_quotes_for_page($quote_list_type,$quote_id);
+  if ($quote_list_type == 'search')
+    {
+      // if the list type is 'search', there must be a search parameter on the query string
+      $search_string = get_param($GLOBALS['search_param'],'string');
+      $dbg->p("search string: ",(FALSE==$search_string)?"FALSE":$search_string,__FILE__,__LINE__,__FUNCTION__);
+      if (FALSE == $search_string)
+	{
+	  error_page("A search string must be given to search the quote data base.");
+	}
+      $quotelist = search_quotes($search_string);
+    }
+  else
+    {
+      $quotelist = get_quotes_for_page($quote_list_type);
+    }
 }
 
 $dbg->p("quotelist: ",$quotelist,__FILE__,__LINE__,__FUNCTION__);

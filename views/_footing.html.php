@@ -20,6 +20,8 @@ echo _wrap($GLOBALS['total_quotes'].' total quotes','div','fright');
 
 echo _wrap('&nbsp;','div','clearboth').PHP_EOL;
 
+global $dbg;
+
 // debug messages
 if ($dbg->is_on())  {
     $dbg_msgs = $dbg->getMessages();
@@ -28,7 +30,7 @@ if ($dbg->is_on())  {
       echo _wrap("[$index] $value","li","error_message").PHP_EOL;
     }
     echo "</ul>".PHP_EOL;
-    echo _wrap(_link("Turn debug off",$_SERVER['SCRIPT_NAME'],array('debug' => 'false')),'p','directive').PHP_EOL
+    echo _wrap(_link("Turn debug off",MAIN,array('debug' => 'false')),'p','directive').PHP_EOL
 ;
 }
 

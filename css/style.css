@@ -26,10 +26,6 @@ DIV.nav {
           margin: 0;
           padding: 2px,
           text-align: right;
-          width: 50%
-          position:absolute;
-          bottom:0;
-          right:0;
           }
 
 DIV.nav ul { list-style: none; text-align: right;}
@@ -37,7 +33,7 @@ DIV.nav ul { list-style: none; text-align: right;}
 DIV.nav ul li { display: inline; }
 
 /* brand is displayed to the left of the top line */
-DIV.brand { margin: 0; padding: 2px; float: left; width: 50%; height: 3em; }
+DIV.brand { margin: 0; padding: 2px; float: left; width: 25%; height: 3em; }
 
 #sitelogo { float: left; }
 #sitetitle { font-weight: bold; font-size: 2em; }

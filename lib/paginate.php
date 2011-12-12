@@ -131,8 +131,6 @@ function get_quotes_partial($offset,$limit,$order='newest')
     $offset = 0;
     $limit = 1;
     break;
-  case 'search':
-    error_page("Search is not yet implemented.");
   default:
     $dbg->p("hit default return in switch. ",$order,__FILE__,__LINE__);
     return FALSE;
@@ -152,4 +150,36 @@ function get_quotes_partial($offset,$limit,$order='newest')
   return $rows;
 }
 
+/**
+ * Retrieve quotes that match $search_string
+ *
+ * @param string search_string - string to use to match quotes
+ * @return array list of quotes
+ * @author Tamara Temple <tamara@tamaratemple.com>
+ **/
+function search_quotes($search_string)
+{
+  global $qdb, $dbg;
+  $quote_list = array(); // start with empty array
+  $search_string = '%'.$search_string.'%';
+  // to avoid possible SQL injections here, we'll use a prepared statement for the LIKE parameter
+  $sql = "SELECT * FROM quotes WHERE quote_text LIKE ?";
+  if ($stmt = $qdb->prepare($sql)) {
+    $stmt->bind_param("s",$search_string);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($id,$quote_text,$rating,$created,$updated);
+
+    while ($stmt->fetch()) {
+      $quote_list[] = array('id'=>$id,
+			    'quote_text'=>$quote_text,
+			    'rating'=>$rating,
+			    'created'=>$created,
+			    'updated'=>$updated);
+    }
+  } else {
+    error_page("Creating search query failed: ",$qdb->errno,": ",$qdb->error," for sql statement: $sql");
+  }
+  return $quote_list;
+}
 

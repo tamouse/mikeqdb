@@ -22,6 +22,7 @@ define('VIEWS', APP_DIR . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 define('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 define('PHP_SELF', $_SERVER['PHP_SELF']);
 define('APP_PATH', dirname(SCRIPT_NAME) . DIRECTORY_SEPARATOR);
+define('MAIN',APP_PATH.'index.php');
 define('CSS', APP_PATH.'css'.DIRECTORY_SEPARATOR);
 define('JS', APP_PATH.'js'.DIRECTORY_SEPARATOR);
 
@@ -37,8 +38,8 @@ require_once(LIB . 'functions.inc.php');
 Configuration Variables
 ***********************/
 
-$GLOBALS['version'] = '0.1';
-$GLOBALS['sitetitle'] = 'Callahans Quotes';
+$GLOBALS['version'] = '0.2';
+$GLOBALS['sitetitle'] = 'Callahans Quotes <i>Beta</i>';
 $GLOBALS['sitelogo'] = '';
 $GLOBALS['HTMLHeader']['style'] = '<link rel="stylesheet" href="'.CSS.'style.css'.'" type="text/css" media="screen" />';
 $GLOBALS['HTMLHeader']['script'] = '';
@@ -47,13 +48,12 @@ $GLOBALS['default_list_type'] = 'newest';
 // navigation should pretty well matchup with listtypes
 $GLOBALS['navigation'] =
   array("About" => APP_PATH.'about.php',
-	"Newest" => SCRIPT_NAME.'/Newest',
-	"Oldest" => SCRIPT_NAME.'/Oldest',
-	"Top Hits" => SCRIPT_NAME.'/TopHits',
-	"Bottom Hits" => SCRIPT_NAME.'/BottomHits',
-	"Browse" => SCRIPT_NAME.'/Browse',
-	"Random" => SCRIPT_NAME.'/Random',
-	"Search" => SCRIPT_NAME.'/Search',
+	"Newest" => MAIN.'/Newest',
+	"Oldest" => MAIN.'/Oldest',
+	"Top Hits" => MAIN.'/TopHits',
+	"Bottom Hits" => MAIN.'/BottomHits',
+	"Browse" => MAIN.'/Browse',
+	"Random" => MAIN.'/Random',
 	);
 $GLOBALS['navsep'] = ' | ';
 $GLOBALS['quotes_per_page'] = 50;
@@ -67,6 +67,7 @@ $GLOBALS['quote_id_param'] = 'q';
 $GLOBALS['list_type_param'] = 'l';
 $GLOBALS['vote_param'] = 'vote';
 $GLOBALS['current_page_param'] = 'p';
+$GLOBALS['search_param'] = 's';
 
 /**
  * Initialize data base
